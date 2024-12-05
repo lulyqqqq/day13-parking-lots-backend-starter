@@ -28,6 +28,13 @@ public class ParkingManager {
         superSmartParkingBoy = new ParkingBoy(parkingLots, new AvailableRateStrategy());
     }
 
+    public ParkingManager(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
+        standardParkingBoy = new ParkingBoy(parkingLots, new SequentiallyStrategy());
+        smartParkingBoy = new ParkingBoy(parkingLots, new MaxAvailableStrategy());
+        superSmartParkingBoy = new ParkingBoy(parkingLots, new AvailableRateStrategy());
+    }
+
     public List<ParkingLot> getAllParkingLots() {
         return parkingLots;
     }

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public class ParkingLotRepository {
-    List<ParkingLot> parkingLots = new ArrayList<>();
+    private final List<ParkingLot> parkingLots = new ArrayList<>();
 
     public ParkingLotRepository() {
         parkingLots.add(new ParkingLot(1, "The Plaza Park", 9));
@@ -16,7 +16,7 @@ public class ParkingLotRepository {
         parkingLots.add(new ParkingLot(3, "Office Tower Parking", 9));
     }
 
-    public List<ParkingLot> getAllParkingLots() {
+    public List<ParkingLot> findAll() {
         return parkingLots;
     }
 }
