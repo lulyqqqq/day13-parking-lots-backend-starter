@@ -63,9 +63,9 @@ public class ParkingManager {
 
     private ParkingBoy getParkingBoy(String parkingBoyType) {
         return switch (parkingBoyType) {
-            case "StandardParkingBoy" -> standardParkingBoy;
-            case "SmartParkingBoy" -> smartParkingBoy;
-            case "SuperSmartParkingBoy" -> superSmartParkingBoy;
+            case "Standard" -> standardParkingBoy;
+            case "Smart" -> smartParkingBoy;
+            case "SuperSmart" -> superSmartParkingBoy;
             default -> throw new IllegalArgumentException("Invalid parking boy type: " + parkingBoyType);
         };
     }

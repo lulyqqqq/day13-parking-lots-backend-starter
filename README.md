@@ -21,3 +21,6 @@ MVC:
 GET："/parkinglots"返回一个基于ParkingManager的getAllParkingLots的一个List数组   
 POST："/fetch" 取车操作 传入的是 String plateNumber，根据plateNumber查询出来我的Ticket，验证数据是否存在，根据Ticket在Ticket数组中remove这个Ticket，完成取车操作，再之后返回的是一个car的plateNumber，根据plateNumber设置一个dto进行返回   
 POST: "/park" 停车操作，传入需要停车的车牌号和停车策略{String plateNumber, String parkingBoyType}，这里传入的值可以封装成一个requestDto返回的是ticket{String plateNumber, int position, int parkingLot} 在repository中使用parkinglot ArrayList模拟数据库，初始化parkinglot
+
+Test:
+请你编写测试controller层的单元测试，使用mockMvc和WebApplicationContext模拟假数据就行test测试三个api输入输出的结果是否符合预期

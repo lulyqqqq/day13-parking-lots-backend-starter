@@ -1,6 +1,7 @@
 package org.afs.pakinglot.controller;
 
 import org.afs.pakinglot.Dto.CarResponseDto;
+import org.afs.pakinglot.Dto.FetchRequestDto;
 import org.afs.pakinglot.Dto.ParkRequestDto;
 import org.afs.pakinglot.domain.Car;
 import org.afs.pakinglot.domain.ParkingLot;
@@ -33,8 +34,8 @@ public class ParkingController {
     }
 
     @PostMapping("/fetch")
-    public CarResponseDto fetchCar(@RequestBody String plateNumber) {
-        Car car = parkingService.fetchCar(plateNumber);
+    public CarResponseDto fetchCar(@RequestBody FetchRequestDto fetchRequestDto) {
+        Car car = parkingService.fetchCar(fetchRequestDto.getPlateNumber());
         return new CarResponseDto(car.plateNumber());
     }
 }
