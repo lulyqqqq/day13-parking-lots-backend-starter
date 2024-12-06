@@ -4,6 +4,7 @@ package org.afs.pakinglot.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.afs.pakinglot.domain.exception.NoAvailablePositionException;
 import org.afs.pakinglot.domain.exception.UnrecognizedTicketException;
 
@@ -37,12 +38,23 @@ public class ParkingLot {
         return capacity - tickets.size();
     }
 
+    public boolean hasAvailableSpace() {
+        return tickets.size() < capacity;
+    }
+
+    public int findNextAvailablePosition() {
+        return java.util.stream.IntStream.rangeClosed(1, capacity)
+                .filter(i -> tickets.keySet().stream().noneMatch(ticket -> ticket.position() == i))
+                .findFirst()
+                .orElseThrow(NoAvailablePositionException::new);
+    }
+
     public Ticket park(Car car) {
-        if (isFull()) {
+        if (!hasAvailableSpace()) {
             throw new NoAvailablePositionException();
         }
+        Ticket ticket = new Ticket(car.plateNumber(), findNextAvailablePosition(), this.id);
 
-        Ticket ticket = new Ticket(car.plateNumber(), tickets.size() + 1, this.id);
         tickets.put(ticket, car);
         return ticket;
     }
@@ -55,7 +67,6 @@ public class ParkingLot {
         if (!tickets.containsKey(ticket)) {
             throw new UnrecognizedTicketException();
         }
-
         return tickets.remove(ticket);
     }
 
